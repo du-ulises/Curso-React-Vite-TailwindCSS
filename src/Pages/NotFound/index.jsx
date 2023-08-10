@@ -1,9 +1,11 @@
+import {Layout} from "../../Components/Layout/index.jsx";
+
 function NotFound() {
     return (
-        <div>
+        <Layout>
             NotFound
-        </div>
+        </Layout>
     )
 }
 
-export { NotFound };
+export {NotFound};

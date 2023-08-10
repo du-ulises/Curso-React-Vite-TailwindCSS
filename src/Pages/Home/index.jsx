@@ -1,9 +1,11 @@
+import {Layout} from "../../Components/Layout/index.jsx";
+
 function Home() {
     return (
-        <div>
+        <Layout>
             Home
-        </div>
+        </Layout>
     )
 }
 
-export { Home };
+export {Home};

@@ -1,9 +1,11 @@
+import {Layout} from "../../Components/Layout/index.jsx";
+
 function MyOrder() {
     return (
-        <div>
+        <Layout>
             MyOrder
-        </div>
+        </Layout>
     )
 }
 
-export { MyOrder };
+export {MyOrder};
