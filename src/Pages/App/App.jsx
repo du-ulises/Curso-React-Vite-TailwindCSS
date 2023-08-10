@@ -6,6 +6,7 @@ import {MyOrders} from "../MyOrders/index.jsx";
 import {SignIn} from "../SignIn/index.jsx";
 import {NotFound} from "../NotFound/index.jsx";
 import '../../App.css';
+import {Navbar} from "../../Components/Navbar/index.jsx";
 
 const AppRoutes = () => {
     return useRoutes([
@@ -18,11 +19,12 @@ const AppRoutes = () => {
     ]);
 }
 const App = () => {
-  return (
-      <BrowserRouter>
-          <AppRoutes/>
-      </BrowserRouter>
-  )
+    return (
+        <BrowserRouter>
+            <AppRoutes/>
+            <Navbar/>
+        </BrowserRouter>
+    )
 }
 
 export default App
