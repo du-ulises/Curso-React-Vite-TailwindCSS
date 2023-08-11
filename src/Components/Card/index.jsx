@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 const Card = ({data}) => {
     Card.propTypes = {
-        data: PropTypes.node.isRequired,
+        data: PropTypes.object.isRequired,
     }
 
     const context = useContext(ShoppingCarContext)

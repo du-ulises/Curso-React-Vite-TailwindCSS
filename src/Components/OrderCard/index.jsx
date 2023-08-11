@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 const OrderCard = ({data}) => {
     OrderCard.propTypes = {
-        data: PropTypes.node.isRequired,
+        data: PropTypes.object.isRequired,
     }
 
     return (
