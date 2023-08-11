@@ -6,6 +6,12 @@ import {OrderCard} from "../OrderCard/index.jsx";
 const CheckoutSideMenu = () => {
     const context = useContext(ShoppingCarContext)
 
+    const handleDelete = (id) => {
+        const filteredProducts = context.cartProducts.filter((product) => product.id !== id)
+        context.setCartProducts(filteredProducts)
+        context.setCount(context.counter--)
+    }
+
     return (
         <aside
             className={`${context.isCheckoutSideMenuOpen ? 'flex' : 'hidden'} flex-col fixed right-0 border bg-white border-black rounded-lg w-[360px] h-[calc(100vh-78px)] top-[68px]`}
@@ -19,7 +25,7 @@ const CheckoutSideMenu = () => {
             <div className='px-6 overflow-y-scroll'>
                 {
                     context.cartProducts.map((product) => (
-                        <OrderCard key={product.id} data={product}/>
+                        <OrderCard key={product.id} data={product} handleDelete={handleDelete}/>
                     ))
                 }
             </div>

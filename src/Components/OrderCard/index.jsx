@@ -1,7 +1,7 @@
 import {XMarkIcon} from "@heroicons/react/20/solid/index.js";
 import PropTypes from "prop-types";
 
-const OrderCard = ({data}) => {
+const OrderCard = ({data, handleDelete}) => {
     OrderCard.propTypes = {
         data: PropTypes.object.isRequired,
     }
@@ -20,7 +20,10 @@ const OrderCard = ({data}) => {
             </div>
             <div className='flex items-center gap-2'>
                 <p className='text-lg font-medium'>${data.price}</p>
-                <XMarkIcon className="h-5 w-5 text-black cursor-pointer"/>
+                <XMarkIcon
+                    onClick={() => handleDelete(data.id)}
+                    className="h-5 w-5 text-black cursor-pointer"
+                />
             </div>
         </div>
     )
