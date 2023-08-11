@@ -5,8 +5,9 @@ import {MyOrder} from "../MyOrder/index.jsx";
 import {MyOrders} from "../MyOrders/index.jsx";
 import {SignIn} from "../SignIn/index.jsx";
 import {NotFound} from "../NotFound/index.jsx";
-import '../../App.css';
+import './App.css';
 import {Navbar} from "../../Components/Navbar/index.jsx";
+import {ShoppingCarProvider} from "../../Context/index.jsx";
 
 const AppRoutes = () => {
     return useRoutes([
@@ -20,10 +21,12 @@ const AppRoutes = () => {
 }
 const App = () => {
     return (
-        <BrowserRouter>
-            <AppRoutes/>
-            <Navbar/>
-        </BrowserRouter>
+        <ShoppingCarProvider>
+            <BrowserRouter>
+                <AppRoutes/>
+                <Navbar/>
+            </BrowserRouter>
+        </ShoppingCarProvider>
     )
 }
 
