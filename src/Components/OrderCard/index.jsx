@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 const OrderCard = ({data, handleDelete}) => {
     OrderCard.propTypes = {
         data: PropTypes.object.isRequired,
+        handleDelete: PropTypes.func.isRequired
     }
 
     return (
