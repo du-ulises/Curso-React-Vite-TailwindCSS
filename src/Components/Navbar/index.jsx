@@ -1,6 +1,9 @@
 import {NavLink} from "react-router-dom";
+import {useContext} from "react";
+import {ShoppingCarContext} from "../../Context/index.jsx";
 
 const Navbar = () => {
+    const context = useContext(ShoppingCarContext)
     const activeStyle = 'underline underline-offset-4';
     return (
         <nav id='navbar'
@@ -115,7 +118,7 @@ const Navbar = () => {
                             isPending ? "pending" : isActive ? activeStyle : undefined
                         }
                     >
-                        Car 0
+                        🛒 {context.count}
                     </NavLink>
                 </li>
             </ul>
