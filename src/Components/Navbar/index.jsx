@@ -1,6 +1,7 @@
 import {NavLink} from "react-router-dom";
 import {useContext} from "react";
 import {ShoppingCarContext} from "../../Context/index.jsx";
+import {ShoppingBagIcon} from "@heroicons/react/20/solid/index.js";
 
 const Navbar = () => {
     const context = useContext(ShoppingCarContext)
@@ -114,11 +115,9 @@ const Navbar = () => {
                 <li>
                     <NavLink
                         to='/'
-                        className={({isActive, isPending}) =>
-                            isPending ? "pending" : isActive ? activeStyle : undefined
-                        }
+                        className='flex justify-center items-center gap-1'
                     >
-                        🛒 {context.count}
+                        <ShoppingBagIcon className='h-5 w-5'/> {context.count}
                     </NavLink>
                 </li>
             </ul>

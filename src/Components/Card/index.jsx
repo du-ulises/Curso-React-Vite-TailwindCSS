@@ -1,5 +1,6 @@
 import {useContext} from "react";
 import {ShoppingCarContext} from "../../Context/index.jsx";
+import {PlusIcon} from "@heroicons/react/20/solid/index.js";
 
 const Card = (data) => {
     const context = useContext(ShoppingCarContext)
@@ -20,7 +21,7 @@ const Card = (data) => {
                         context.setCount(context.count++)
                     }}
                 >
-                    +
+                    <PlusIcon className='h-5 w-5 text-black'></PlusIcon>
                 </div>
             </figure>
             <p className='flex justify-between'>
