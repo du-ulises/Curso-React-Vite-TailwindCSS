@@ -2,10 +2,35 @@ import {createContext, useEffect, useState} from "react";
 import PropTypes from "prop-types";
 
 export const ShoppingCarContext = createContext()
+
+export const InitializeLocalStorage = () => {
+    const accountInLocalStorage = localStorage.getItem('account')
+    const signOutInLocalStorage = localStorage.getItem('sign-out')
+    // let parsedAccount
+    // let parsedSignOut
+
+    if (!accountInLocalStorage) {
+        localStorage.setItem('account', JSON.stringify({}))
+        // parsedAccount = {}
+    } else {
+        // parsedAccount = JSON.parse(accountInLocalStorage)
+    }
+
+    if (!signOutInLocalStorage) {
+        localStorage.setItem('sign-out', JSON.stringify(false))
+        // parsedSignOut = false
+    } else {
+        // parsedSignOut = JSON.parse(signOutInLocalStorage)
+    }
+}
 export const ShoppingCarProvider = ({children}) => {
     ShoppingCarProvider.propTypes = {
         children: PropTypes.node.isRequired,
     }
+
+    const [account, setAccount] = useState({})
+
+    const [signOut, setSignOut] = useState(false)
 
     const [count, setCount] = useState(0);
 
@@ -105,7 +130,11 @@ export const ShoppingCarProvider = ({children}) => {
             setSearchByTitle,
             filteredItems,
             searchByCategory,
-            setSearchByCategory
+            setSearchByCategory,
+            account,
+            setAccount,
+            signOut,
+            setSignOut
         }}>
             {children}
         </ShoppingCarContext.Provider>
