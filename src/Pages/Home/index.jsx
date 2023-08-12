@@ -8,18 +8,16 @@ import {ShoppingCarContext} from "../../Context/index.jsx";
 function Home() {
     const context = useContext(ShoppingCarContext)
     const renderView = () => {
-        const itemsToRender = context.searchByTitle?.length > 0
-            ? context.filteredItems
-            : context.items;
-
-        if (itemsToRender?.length > 0) {
-            return itemsToRender.map(item => (
-                <Card key={item.id} data={item}/>
-            ));
+        if (context.filteredItems?.length > 0) {
+            return (
+                context.filteredItems?.map(item => (
+                    <Card key={item.id} data={item}/>
+                ))
+            )
         } else {
-            return <p>No Results Found</p>;
+            return <p>No Products Found</p>;
         }
-    };
+    }
 
     return (
         <Layout>
