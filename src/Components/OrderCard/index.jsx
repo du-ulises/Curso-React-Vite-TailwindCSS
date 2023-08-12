@@ -4,7 +4,15 @@ import PropTypes from "prop-types";
 const OrderCard = ({data, handleDelete}) => {
     OrderCard.propTypes = {
         data: PropTypes.object.isRequired,
-        handleDelete: PropTypes.func.isRequired
+        handleDelete: PropTypes.func
+    }
+
+    let renderXMark
+    if (handleDelete) {
+        renderXMark = <XMarkIcon
+            onClick={() => handleDelete(data.id)}
+            className="h-5 w-5 text-black cursor-pointer"
+        />
     }
 
     return (
@@ -21,10 +29,7 @@ const OrderCard = ({data, handleDelete}) => {
             </div>
             <div className='flex items-center gap-2'>
                 <p className='text-lg font-medium'>${data.price}</p>
-                <XMarkIcon
-                    onClick={() => handleDelete(data.id)}
-                    className="h-5 w-5 text-black cursor-pointer"
-                />
+                {renderXMark}
             </div>
         </div>
     )

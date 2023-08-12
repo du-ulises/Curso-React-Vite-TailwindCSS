@@ -3,6 +3,7 @@ import {useContext} from "react";
 import {ShoppingCarContext} from "../../Context/index.jsx";
 import {OrderCard} from "../OrderCard/index.jsx";
 import {totalPrice} from "../../utils/index.js";
+import {Link} from "react-router-dom";
 
 const CheckoutSideMenu = () => {
     const context = useContext(ShoppingCarContext)
@@ -10,7 +11,20 @@ const CheckoutSideMenu = () => {
     const handleDelete = (id) => {
         const filteredProducts = context.cartProducts.filter((product) => product.id !== id)
         context.setCartProducts(filteredProducts)
-        context.setCount(context.counter--)
+        context.setCount(context.count - 1)
+    }
+    const handleCheckout = () => {
+        const orderToAdd = {
+            date: '01.02.23',
+            products: context.cartProducts,
+            totalProducts: context.cartProducts.length,
+            totalPrice: totalPrice(context.cartProducts)
+        }
+
+        context.setOrder([...context.order, orderToAdd])
+        context.setCartProducts([])
+        context.setCount(0)
+        context.closeCheckoutSideMenu()
     }
 
     return (
@@ -23,15 +37,15 @@ const CheckoutSideMenu = () => {
                     <XMarkIcon className="h-5 w-5 text-black cursor-pointer"/>
                 </div>
             </div>
-            <div className='px-6 overflow-y-scroll'>
+            <div className='px-6 overflow-y-scroll flex-1'>
                 {
                     context.cartProducts.map((product) => (
                         <OrderCard key={product.id} data={product} handleDelete={handleDelete}/>
                     ))
                 }
             </div>
-            <div className='px-6'>
-                <p className='flex justify-between items-center'>
+            <div className='px-6 mb-6'>
+                <p className='flex justify-between items-center my-2'>
                     <span className='font-light '>
                         Total:
                     </span>
@@ -39,6 +53,14 @@ const CheckoutSideMenu = () => {
                         ${totalPrice(context.cartProducts)}
                     </span>
                 </p>
+                <Link to='/my-orders/last'>
+                    <button
+                        className='w-full bg-black text-white py-3 rounded-lg'
+                        onClick={() => handleCheckout()}
+                    >
+                        Checkout
+                    </button>
+                </Link>
             </div>
         </aside>
     )
