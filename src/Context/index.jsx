@@ -1,4 +1,4 @@
-import {createContext, useState} from "react";
+import {createContext, useEffect, useState} from "react";
 import PropTypes from "prop-types";
 
 export const ShoppingCarContext = createContext()
@@ -36,6 +36,25 @@ export const ShoppingCarProvider = ({children}) => {
 
     const [order, setOrder] = useState([])
 
+    const [items, setItems] = useState(null)
+
+    const [filteredItems, setFilteredItems] = useState(null)
+
+    const [searchByTitle, setSearchByTitle] = useState('')
+
+    useEffect(() => {
+        fetch('https://api.escuelajs.co/api/v1/products')
+            .then(response => response.json())
+            .then(data => setItems(data))
+    }, []);
+
+    const filteredItemsByTitle = (items, searchByTitle) => {
+        return items?.filter(item => item.title.toLowerCase().includes(searchByTitle.toLowerCase()))
+    }
+
+    useEffect(() => {
+        if (searchByTitle) setFilteredItems((filteredItemsByTitle(items, searchByTitle)))
+    }, [items, searchByTitle])
 
     return (
         <ShoppingCarContext.Provider value={{
@@ -52,7 +71,12 @@ export const ShoppingCarProvider = ({children}) => {
             openCheckoutSideMenu,
             closeCheckoutSideMenu,
             order,
-            setOrder
+            setOrder,
+            items,
+            setItems,
+            searchByTitle,
+            setSearchByTitle,
+            filteredItems
         }}>
             {children}
         </ShoppingCarContext.Provider>
